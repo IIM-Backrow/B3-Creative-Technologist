@@ -5,6 +5,7 @@
 
 extern WebServer server;
 
+void setCORSHeaders();
 void initWebServer();
 void printServerInfo();
 void handleWebServerClients();

@@ -6,11 +6,52 @@
 
 WebServer server(80);
 
+void setCORSHeaders() {
+  server.sendHeader("Access-Control-Allow-Origin", "*");
+  server.sendHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  server.sendHeader("Access-Control-Allow-Headers", "*");
+  server.sendHeader("Access-Control-Max-Age", "86400");
+}
+
 void initWebServer() {
-  // Configure web server routes with lambda functions to pass server reference
-  server.on("/unlock", HTTP_GET, []() { handleUnlock(server); });
-  server.on("/setcode", HTTP_GET, []() { handleSetCode(server); });
-  server.on("/status", HTTP_GET, []() { handleStatus(server); });
+  // Configure CORS preflight handler
+  server.on("/unlock", HTTP_OPTIONS, []() {
+    setCORSHeaders();
+    server.send(204);
+  });
+  server.on("/setcode", HTTP_OPTIONS, []() {
+    setCORSHeaders();
+    server.send(204);
+  });
+  server.on("/status", HTTP_OPTIONS, []() {
+    setCORSHeaders();
+    server.send(204);
+  });
+
+    // Configure web server routes with lambda functions to pass server reference
+  server.on("/unlock", HTTP_GET, []() {
+    setCORSHeaders();
+    handleUnlock(server);
+  });
+  server.on("/setcode", HTTP_GET, []() {
+    setCORSHeaders();
+    handleSetCode(server);
+  });
+  server.on("/status", HTTP_GET, []() {
+    setCORSHeaders();
+    handleStatus(server);
+  });
+
+  // Catch-all OPTIONS handler for CORS preflight
+  server.onNotFound([]() {
+    if (server.method() == HTTP_OPTIONS) {
+      setCORSHeaders();
+      server.send(204);
+    } else {
+      setCORSHeaders();
+      server.send(404, "application/json", "{\"status\":\"error\",\"message\":\"Not found\"}");
+    }
+  });
 
   // Start server
   server.begin();

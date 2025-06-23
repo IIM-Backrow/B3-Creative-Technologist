@@ -47,5 +47,5 @@ void onShake() {
 
   setLight(COLOR_RED);
   playSecurityAlarm();
-  setLight(COLOR_OFF);;
+  setLight(COLOR_OFF);
 }

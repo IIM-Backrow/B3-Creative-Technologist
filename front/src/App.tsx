@@ -6,7 +6,7 @@ function App() {
   const [code, setCode] = useState<string>('');
   const [containerColor, setContainerColor] = useState<string>('');
 
-  const handleKeypadClick = (number: number | string) => {
+  const handleKeypadClick = async (number: number | string) => {
     if (code.length === 4 && typeof number === 'number') {
       console.warn('Maximum code length reached');
       return;
@@ -20,7 +20,10 @@ function App() {
       setCode(prevCode => prevCode.slice(0, -1));
     }
     else if (number === '✓') {
-      setContainerColor(code === '0000' ? '#54B95C' : '#B03636');
+        const data = await fetch(`http://192.168.4.1/unlock?code=${code}`)
+          .then(response => response.json())
+          console.log(data);
+          
       setCode('');
     }
     else {

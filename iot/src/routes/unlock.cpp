@@ -1,6 +1,6 @@
 #include "unlock.h"
-#include "../vault_config.h"
-#include "../servo_controller.h"
+#include "../config/vault_config.h"
+#include "../hardware/servo_controller.h"
 
 void handleUnlock(WebServer &server) {
   String code = "";

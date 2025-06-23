@@ -1,5 +1,5 @@
 #include "status.h"
-#include "../vault_config.h"
+#include "../config/vault_config.h"
 
 void handleStatus(WebServer &server) {
   String status = vaultOpen ? "open" : "closed";

@@ -1,5 +1,5 @@
 #include "wifi_manager.h"
-#include "vault_config.h"
+#include "../config/vault_config.h"
 
 // Access Point configuration
 const char* AP_SSID = "SecureVault";

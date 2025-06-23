@@ -1,5 +1,5 @@
 #include "setcode.h"
-#include "../vault_config.h"
+#include "../config/vault_config.h"
 
 void handleSetCode(WebServer &server) {
   String oldCode = "";

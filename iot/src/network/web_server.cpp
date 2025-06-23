@@ -1,8 +1,8 @@
 #include "web_server.h"
-#include "vault_config.h"
-#include "routes/unlock.h"
-#include "routes/setcode.h"
-#include "routes/status.h"
+#include "../config/vault_config.h"
+#include "../routes/unlock.h"
+#include "../routes/setcode.h"
+#include "../routes/status.h"
 
 WebServer server(80);
 

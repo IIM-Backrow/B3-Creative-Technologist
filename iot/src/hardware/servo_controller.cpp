@@ -1,5 +1,5 @@
 #include "servo_controller.h"
-#include "vault_config.h"
+#include "../config/vault_config.h"
 
 s3servo myServo;
 

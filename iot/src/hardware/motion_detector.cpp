@@ -1,4 +1,5 @@
 #include "motion_detector.h"
+#include "../config/notes.h"
 
 const int MPU_SDA_PIN = 5;
 const int MPU_SCL_PIN = 6;
@@ -56,12 +57,10 @@ float calculateAccelMagnitude(sensors_event_t& accel) {
 void onShake() {
   Serial.println("🚨 SHAKE DETECTED! Security alert triggered!");
 
-    // tone notes
+  // Play alert melody
+  tone(SPEAKER_PIN, NOTE_A4, 500);
+  tone(SPEAKER_PIN, NOTE_F4, 500);
+  tone(SPEAKER_PIN, NOTE_D4, 500);
 
-  // TODO: Add security protocol here
-  // - Send alert notification
-  // - Lock vault permanently until reset
-  // - Take photo/video
-  // - Send location data
-  // - etc.
+  // TODO: Add security protocol here (set leds in red)
 }

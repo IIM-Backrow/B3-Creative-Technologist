@@ -1,9 +1,9 @@
 #include <Arduino.h>
-#include "vault_config.h"
-#include "wifi_manager.h"
-#include "servo_controller.h"
-#include "web_server.h"
-#include "motion_detector.h"
+#include "config/vault_config.h"
+#include "network/wifi_manager.h"
+#include "hardware/servo_controller.h"
+#include "network/web_server.h"
+#include "hardware/motion_detector.h"
 
 void setup() {
   Serial.begin(115200);

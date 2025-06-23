@@ -1,0 +1,7 @@
+.keypad-number{
+    appearance: none;
+    width: 5rem;
+    height: 5rem;
+    border: 4   px solid #050521;
+    border-radius: 9999px;
+}

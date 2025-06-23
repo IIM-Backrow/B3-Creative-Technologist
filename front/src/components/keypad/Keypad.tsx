@@ -1,0 +1,22 @@
+import { KeypadNumber } from "../keypadNumber/KeypadNumber";
+import "./Keypad.css";
+
+interface KeypadProps {
+    onNumberClick: (number: number) => void;
+}
+
+export function Keypad({ onNumberClick }: KeypadProps) {
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+    return (
+        <div className="keypad">
+            {numbers.map((number) => (
+                <KeypadNumber
+                    key={number}
+                    number={number}
+                    onClick={onNumberClick}
+                />
+            ))}
+        </div>
+    );
+}

@@ -1,7 +1,34 @@
+@font-face {
+    font-family: 'Eras ITC Bold';
+    src: url('/font/eras-itc-bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
 .keypad-number{
     appearance: none;
     width: 5rem;
     height: 5rem;
-    border: 4   px solid #050521;
+    border: 3px solid #050521;
     border-radius: 9999px;
+    background-color: #34C0AE;
+    font-family: 'Eras ITC Bold', sans-serif;
+    font-size: 2.5rem;
+    color: #F3F3F2;
+
+    /* Hover state */
+    &:hover {
+        background-color: #2aa998;
+        transform: scale(1.05);
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+
+    /* Active/pressed state */
+    &:active {
+        background-color: #218a7c;
+        transform: scale(0.95);
+        transition: all 0.1s ease;
+    }
 }

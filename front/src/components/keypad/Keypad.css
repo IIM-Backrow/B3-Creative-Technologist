@@ -3,8 +3,5 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    }
-    *:last-child {
-        grid-column: 2;
 
 }

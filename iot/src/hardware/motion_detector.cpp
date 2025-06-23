@@ -1,11 +1,13 @@
 #include "motion_detector.h"
 #include "../config/notes.h"
+#include "led_controller.h"
+#include "megalovania.h"
 
 const int MPU_SDA_PIN = 5;
 const int MPU_SCL_PIN = 6;
 const int SPEAKER_PIN = 7;
 
-const float SHAKE_THRESHOLD = 2.5;
+const float SHAKE_THRESHOLD = 15;
 const unsigned long SHAKE_DEBOUNCE_TIME = 500;
 
 Adafruit_MPU6050 mpu;
@@ -16,11 +18,6 @@ unsigned long lastShakeTime = 0;
 void initMotionDetector() {
   Wire.begin(MPU_SDA_PIN, MPU_SCL_PIN);
   pinMode(SPEAKER_PIN, OUTPUT);
-
-  if (!mpu.begin()) {
-    Serial.println("❌ Failed to find MPU6050 chip");
-    return;
-  }
 
   mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
   mpu.setGyroRange(MPU6050_RANGE_500_DEG);
@@ -57,10 +54,7 @@ float calculateAccelMagnitude(sensors_event_t& accel) {
 void onShake() {
   Serial.println("🚨 SHAKE DETECTED! Security alert triggered!");
 
-  // Play alert melody
-  tone(SPEAKER_PIN, NOTE_A4, 500);
-  tone(SPEAKER_PIN, NOTE_F4, 500);
-  tone(SPEAKER_PIN, NOTE_D4, 500);
-
-  // TODO: Add security protocol here (set leds in red)
+  setLight(COLOR_RED);
+  playSecurityAlarm();
+  setLight(COLOR_OFF);;
 }

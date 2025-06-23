@@ -2,6 +2,7 @@
 #include "config/vault_config.h"
 #include "network/wifi_manager.h"
 #include "hardware/servo_controller.h"
+#include "hardware/led_controller.h"
 #include "network/web_server.h"
 #include "hardware/motion_detector.h"
 
@@ -10,6 +11,9 @@ void setup() {
   Serial.readStringUntil('\n');
 
   Serial.println("🚀 Starting ESP32S3 Vault Control System");
+
+  // Initialize LED first for visual feedback
+  initLeds();
 
   // Initialize servo
   initServo();

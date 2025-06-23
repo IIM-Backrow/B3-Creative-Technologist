@@ -3,10 +3,6 @@
 
 #include <Arduino.h>
 
-// WiFi credentials
-extern const char* WIFI_SSID;
-extern const char* WIFI_PASSWORD;
-
 // Servo configuration
 extern const int SERVO_PIN;
 extern const int VAULT_OPEN_ANGLE;

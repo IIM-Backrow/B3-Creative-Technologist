@@ -1,30 +1,35 @@
 #include "wifi_manager.h"
 #include "vault_config.h"
 
+// Access Point configuration
+const char* AP_SSID = "SecureVault";
+const char* AP_PASSWORD = "";
+
 void initWiFi() {
   delay(1000);
 
-  Serial.println("Connecting to WiFi");
-  Serial.print("SSID: ");
-  Serial.println(WIFI_SSID);
-  Serial.print("Password: ");
-  Serial.println(WIFI_PASSWORD);
+  Serial.println("🔧 Creating WiFi Access Point...");
+  Serial.print("📡 SSID: ");
+  Serial.println(AP_SSID);
+  Serial.println("🔓 Password: <None>");
 
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  Serial.print("Status: ");
-  Serial.println(WiFi.status());
+  // Create Access Point
+  bool success = WiFi.softAP(AP_SSID, AP_PASSWORD);
 
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
+  if (success) {
+    Serial.println("✅ Access Point created successfully!");
+  } else {
+    Serial.println("❌ Failed to create Access Point!");
+    return;
   }
 
-  Serial.println();
-  Serial.println("✅ WiFi connected!");
+  delay(1000); // Give AP time to start
 }
 
 void printWiFiInfo() {
-  Serial.print("📡 IP address: ");
-  Serial.println(WiFi.localIP());
-  Serial.println("🔗 Server: http://" + WiFi.localIP().toString());
+  IPAddress apIP = WiFi.softAPIP();
+  Serial.print("📡 Access Point IP: http://");
+  Serial.println(apIP);
+  Serial.print("🌐 Connect to network: ");
+  Serial.println(AP_SSID);
 }

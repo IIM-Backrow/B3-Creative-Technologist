@@ -1,6 +1,6 @@
 #include "megalovania.h"
 
-#define buzz 7  // Speaker pin
+const int SPEAKER_PIN = 7;
 
 void playSecurityAlarm() {
   play(dnat, 4, .25);
@@ -20,9 +20,9 @@ void playSecurityAlarm() {
 }
 
 void play(double note, int octave, double note_val) {
-  tone(buzz, oct(note, octave));
+  tone(SPEAKER_PIN, oct(note, octave));
   delay((beat * note_val) - 20);
-  noTone(buzz);
+  noTone(SPEAKER_PIN);
   delay(20);
 }
 
@@ -32,13 +32,13 @@ void rest(double note_val) {
 
 void vibrato(double note, int octave, double note_val) {
   for (int i = 0; i < 4; i++) {
-    tone(buzz, oct(note, octave));
+    tone(SPEAKER_PIN, oct(note, octave));
     delay(beat * note_val / 16);
-    tone(buzz, oct(note, octave) - 20);
+    tone(SPEAKER_PIN, oct(note, octave) - 20);
     delay(beat * note_val / 16);
-    tone(buzz, oct(note, octave));
+    tone(SPEAKER_PIN, oct(note, octave));
     delay(beat * note_val / 16);
-    tone(buzz, oct(note, octave) + 20);
+    tone(SPEAKER_PIN, oct(note, octave) + 20);
     delay(beat * note_val / 16);
   }
 }

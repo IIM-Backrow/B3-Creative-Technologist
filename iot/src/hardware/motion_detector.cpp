@@ -7,21 +7,17 @@ const int MPU_SDA_PIN = 5;
 const int MPU_SCL_PIN = 6;
 const int SPEAKER_PIN = 7;
 
-const float SHAKE_THRESHOLD = 15;
-const unsigned long SHAKE_DEBOUNCE_TIME = 500;
+const float SHAKE_THRESHOLD = 10;
 
 Adafruit_MPU6050 mpu;
 
 float lastAccelMagnitude = 0.0;
-unsigned long lastShakeTime = 0;
 
 void initMotionDetector() {
   Wire.begin(MPU_SDA_PIN, MPU_SCL_PIN);
   pinMode(SPEAKER_PIN, OUTPUT);
 
-  mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
-  mpu.setGyroRange(MPU6050_RANGE_500_DEG);
-  mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
+  mpu.begin();
 
   delay(100);
 }
@@ -32,14 +28,9 @@ void updateMotionDetection() {
 
   float currentMagnitude = calculateAccelMagnitude(accel);
 
-  if (lastAccelMagnitude > 0) {
-    float magnitudeChange = abs(currentMagnitude - lastAccelMagnitude);
-
-    if (magnitudeChange > SHAKE_THRESHOLD &&
-        (millis() - lastShakeTime) > SHAKE_DEBOUNCE_TIME) {
-      onShake();
-      lastShakeTime = millis();
-    }
+  if (lastAccelMagnitude > 0 &&
+      abs(currentMagnitude - lastAccelMagnitude) > SHAKE_THRESHOLD) {
+    onShake();
   }
 
   lastAccelMagnitude = currentMagnitude;

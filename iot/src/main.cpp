@@ -3,6 +3,7 @@
 #include "wifi_manager.h"
 #include "servo_controller.h"
 #include "web_server.h"
+#include "motion_detector.h"
 
 void setup() {
   Serial.begin(115200);
@@ -12,6 +13,9 @@ void setup() {
 
   // Initialize servo
   initServo();
+
+  // Initialize motion detector
+  initMotionDetector();
 
   // Connect to WiFi
   initWiFi();
@@ -24,4 +28,5 @@ void setup() {
 
 void loop() {
   handleWebServerClients();
+  updateMotionDetection();
 }

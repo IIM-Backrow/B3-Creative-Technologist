@@ -1,16 +1,27 @@
 #include <Arduino.h>
-
-#define SERVO_PIN 10
+#include "vault_config.h"
+#include "wifi_manager.h"
+#include "servo_controller.h"
+#include "web_server.h"
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Hello, World!");
-  pinMode(SERVO_PIN, OUTPUT);
+  Serial.readStringUntil('\n');
+
+  Serial.println("🚀 Starting ESP32S3 Vault Control System");
+
+  // Initialize servo
+  initServo();
+
+  // Connect to WiFi
+  initWiFi();
+  printWiFiInfo();
+
+  // Initialize and start web server
+  initWebServer();
+  printServerInfo();
 }
 
 void loop() {
-  digitalWrite(SERVO_PIN, HIGH);
-  delay(1000);
-  digitalWrite(SERVO_PIN, LOW);
-  delay(1000);
+  handleWebServerClients();
 }

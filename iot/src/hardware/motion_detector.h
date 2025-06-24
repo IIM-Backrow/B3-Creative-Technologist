@@ -5,10 +5,9 @@
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
+#include "../config/pin_config.h"
 
 // MPU6050 configuration
-extern const int MPU_SDA_PIN;
-extern const int MPU_SCL_PIN;
 extern const float SHAKE_THRESHOLD;
 extern const unsigned long SHAKE_DEBOUNCE_TIME;
 

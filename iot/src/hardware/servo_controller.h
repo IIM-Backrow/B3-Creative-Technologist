@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include "s3servo.h"
+#include "../config/pin_config.h"
 
 extern s3servo myServo;
 

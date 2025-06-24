@@ -5,6 +5,7 @@
 #include "hardware/led_controller.h"
 #include "network/web_server.h"
 #include "hardware/motion_detector.h"
+#include "hardware/button_controller.h"
 
 void setup() {
   Serial.begin(115200);
@@ -12,20 +13,14 @@ void setup() {
 
   Serial.println("🚀 Starting ESP32S3 Vault Control System");
 
-  // Initialize LED first for visual feedback
   initLeds();
-
-  // Initialize servo
   initServo();
-
-  // Initialize motion detector
   initMotionDetector();
+  initButtons();
 
-  // Connect to WiFi
   initWiFi();
   printWiFiInfo();
 
-  // Initialize and start web server
   initWebServer();
   printServerInfo();
 }
@@ -33,4 +28,5 @@ void setup() {
 void loop() {
   handleWebServerClients();
   updateMotionDetection();
+  updateButtons();
 }

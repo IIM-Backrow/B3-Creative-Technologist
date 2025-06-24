@@ -21,19 +21,6 @@ void initLeds() {
   pixels.begin();
   pixels.clear();
   pixels.show();
-
-  Serial.println("✅ NeoPixel LED initialized on pin " + String(LED_PIN));
-
-  // Test sequence: Red -> Green -> Blue -> Off
-  setLight(COLOR_RED);
-  delay(200);
-  setLight(COLOR_GREEN);
-  delay(200);
-  setLight(COLOR_BLUE);
-  delay(200);
-  setLight(COLOR_OFF);
-
-  Serial.println("🌈 LED test sequence completed");
 }
 
 void setLight(uint32_t color) {

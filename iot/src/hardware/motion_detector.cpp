@@ -1,10 +1,7 @@
 #include "motion_detector.h"
 #include "led_controller.h"
 
-const int MPU_SDA_PIN = 5;
-const int MPU_SCL_PIN = 6;
-
-const float SHAKE_THRESHOLD = 10;
+const float SHAKE_THRESHOLD = 15;
 
 Adafruit_MPU6050 mpu;
 
@@ -42,8 +39,8 @@ void onShake() {
 
   for (int i = 0; i < 5; i++) {
     setLight(COLOR_RED);
-    delay(500);
+    delay(200);
     setLight(COLOR_OFF);
-    delay(500);
+    delay(200);
   }
 }

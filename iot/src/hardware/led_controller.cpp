@@ -1,10 +1,5 @@
 #include "led_controller.h"
 
-// LED configuration
-const int LED_PIN = 4;
-const int LED_COUNT = 1;
-
-// Color definitions (RGB values)
 const uint32_t COLOR_RED = 0xFF0000;
 const uint32_t COLOR_GREEN = 0x00FF00;
 const uint32_t COLOR_BLUE = 0x0000FF;
@@ -14,7 +9,6 @@ const uint32_t COLOR_CYAN = 0x00FFFF;
 const uint32_t COLOR_WHITE = 0xFFFFFF;
 const uint32_t COLOR_OFF = 0x000000;
 
-// NeoPixel object
 Adafruit_NeoPixel pixels(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 void initLeds() {

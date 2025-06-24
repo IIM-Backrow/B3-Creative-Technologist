@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "config/vault_config.h"
+#include "config/pin_config.h"
 #include "network/wifi_manager.h"
 #include "hardware/servo_controller.h"
 #include "hardware/led_controller.h"
@@ -10,8 +11,6 @@
 void setup() {
   Serial.begin(115200);
   Serial.readStringUntil('\n');
-
-  Serial.println("🚀 Starting ESP32S3 Vault Control System");
 
   initLeds();
   initServo();

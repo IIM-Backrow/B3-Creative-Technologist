@@ -3,10 +3,7 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
-
-// LED configuration
-extern const int LED_PIN;
-extern const int LED_COUNT;
+#include "../config/pin_config.h"
 
 // Color definitions (RGB values)
 extern const uint32_t COLOR_RED;

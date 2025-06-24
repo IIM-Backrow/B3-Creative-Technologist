@@ -2,14 +2,7 @@
 #define BUTTON_CONTROLLER_H
 
 #include <Arduino.h>
-
-// Button pins
-#define BUTTON_PIN_1 1
-#define BUTTON_PIN_2 2
-#define BUTTON_PIN_3 3
-#define BUTTON_PIN_4 8
-#define BUTTON_PIN_BACKSPACE 7
-#define BUTTON_PIN_CONFIRM 44
+#include "../config/pin_config.h"
 
 void initButtons();
 void updateButtons();
